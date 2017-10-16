@@ -15,7 +15,8 @@ s="Automation"
 print(s)
 while s:
     print(s[0])
-    s=s.replace(s[0], '')
+    # s=s.replace(s[0], '')
+    s=s[1:]
 print(s)
 
 
@@ -24,8 +25,8 @@ print(s)
 
 m=[23,12,0,98,76.5,82,1.1]
 print(m)
+m.sort()
 while m:
-    m.sort()
     print(m.pop(0))
 print(m)
 
@@ -33,21 +34,28 @@ print(m)
 
 a='Quote: "We are not what we should be! \nWe are not what we need to be. \nBut at least we are not what we used to bе \n(Football, volleyball Coach)"'
 lst=[]
-dct={}
+n=a.split()
 print(a)
-print(len(a.split()))
-for i in range(len(a.split())):
-    sp=((((((a.split()[i].strip('!')).strip('.')).strip(',')).strip(':')).strip('"')).strip(')')).strip('(')
+print(len(n))
+for i in range(len(n)):
+    sp=n[i].strip("[,.:;!\"\')(]")
     sp=sp.lower()
     lst.append(sp)
-def word_count():
-    for i in lst:
+lst.sort()
+def word_count(nlst):
+    dct={}
+    for i in nlst:
             if i in dct:
                 dct[i] += 1
             else:
                 dct[i] = 1
-lst.sort()
+    print(dct)
+def word_similar(mlst):
+    t = []
+    for i in mlst:
+        if i not in t:
+            t.append(i)
+    print(t)
 print(lst)
-word_count()
-for i in dct:
-    print(i,dct[i])
+word_similar(lst)
+word_count(lst)
